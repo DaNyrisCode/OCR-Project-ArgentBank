@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Sign_in = () => {
     return (
         <main className="main bg-dark">
@@ -27,12 +29,12 @@ const Sign_in = () => {
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
 
-                    <a
-                        href="./user.html"
+                    <Link 
+                        to="/user"
                         className="sign-in-button"
                     >
                         Sign In
-                    </a>
+                    </Link>
 
                 </form>
             </section>
