@@ -1,0 +1,30 @@
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+  
+    label {
+      font-weight: bold;
+    }
+  
+    input {
+      padding: 5px;
+      font-size: 1.2rem;
+    }
+  }
+  
+  .input-remember {
+    display: flex;
+  
+    label {
+      margin-left: 0.25rem;
+    }
+  }
+  
+  .sign-in-button {
+    @include button-style($color-primary-green, $wht-color, $color-primary-green);
+    display: block;
+    margin-top: 1rem;
+  }
+  

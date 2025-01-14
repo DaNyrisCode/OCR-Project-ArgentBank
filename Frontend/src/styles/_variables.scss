@@ -1,0 +1,28 @@
+//* VARIABLES
+
+$color-primary-green: #00bc77;
+
+$bckground-color-purple: #12002b;
+
+$font-primary-color: #2c3e50;
+
+$wht-color: #fff;
+$blk-color: #000;
+
+//* MIXINS
+
+@mixin button-style($bg-color, $text-color, $border-color) {
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: 1px solid $border-color;
+    background-color: $bg-color;
+    color: $text-color;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+  
+    @media (min-width: 720px) {
+      width: auto;
+    }
+  }
