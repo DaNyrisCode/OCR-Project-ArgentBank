@@ -23,36 +23,7 @@ export const loginUser = createAsyncThunk(
       return rejectWithValue(error.message);
     }
   }
-);
-
-// Récupération du profil
-export const fetchUserProfile = createAsyncThunk(
-    'auth/fetchUserProfile',
-    async (_, { getState, rejectWithValue }) => {
-      const token = getState().auth.token;
-  
-      try {
-        const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
-  
-        const data = await response.json();
-  
-        if (!response.ok) {
-          throw new Error(data.message || 'Failed to fetch user profile');
-        }
-  
-        return data.body;
-      } catch (error) {
-        return rejectWithValue(error.message);
-      }
-    }
-  );
-  
+);  
 
 const authSlice = createSlice({
   name: 'auth',
@@ -85,19 +56,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-
-      // Récupération du profil
-      .addCase(fetchUserProfile.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-      })
-      .addCase(fetchUserProfile.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
   },
 });
 

@@ -2,7 +2,7 @@ import Accounts from "../components/User/Account";
 import UserHeader from "../components/User/UserHeader";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile } from "../redux/slices/authSlice";
+import { fetchUserProfile } from "../redux/slices/profileSlice";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -24,4 +24,3 @@ const User = () => {
 };
 
 export default User;
-

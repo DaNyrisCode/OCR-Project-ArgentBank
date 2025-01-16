@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
 const UserHeader = () => {
-  const user = useSelector((state) => state.auth.user);
-  const loading = useSelector((state) => state.auth.loading);
+  const user = useSelector((state) => state.profile.user); // On récupère depuis profile
+  const loading = useSelector((state) => state.profile.loading);
 
   return (
     <div className="header">
