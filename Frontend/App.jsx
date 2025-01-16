@@ -4,8 +4,8 @@ import Navbar from './src/components/Navbar';
 import Home from './src/pages/Home';
 import Sign_in from './src/pages/Sign-in';
 import User from './src/pages/User';
-import './src/styles/main.scss'
-
+import PrivateRoute from './src/components/PrivateRoute';
+import './src/styles/main.scss';
 
 function App() {
   return (
@@ -14,11 +14,18 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<Sign_in />} />
-        <Route path="/user" element={<User />} />
+        <Route
+          path="/user"
+          element={
+            <PrivateRoute>
+              <User />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

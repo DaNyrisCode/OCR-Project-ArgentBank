@@ -24,7 +24,6 @@
   
   .sign-in-button {
     @include button-style($color-primary-green, $wht-color, $color-primary-green);
-    display: block;
     margin-top: 1rem;
   }
   

@@ -1,9 +1,21 @@
+import { useSelector } from "react-redux";
+
 const UserHeader = () => {
+  const user = useSelector((state) => state.auth.user);
+  const loading = useSelector((state) => state.auth.loading);
+
   return (
     <div className="header">
-      <h1>
-        Welcome back<br />Tony Stark!
-      </h1>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : user ? (
+        <h1>
+          Welcome back<br />
+          {user.firstName} {user.lastName}!
+        </h1>
+      ) : (
+        <h1>Welcome back, User!</h1>
+      )}
       <button className="edit-button">Edit Name</button>
     </div>
   );
