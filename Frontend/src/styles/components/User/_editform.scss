@@ -1,0 +1,102 @@
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: $font-primary-color;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    margin: 20px auto;
+  
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+  
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: $wht-color;
+        font-size: 1rem;
+      }
+  
+      input {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid $font-color-grey;
+        border-radius: 5px;
+        background: $wht-color;
+        transition: all 0.3s ease;
+  
+        &:focus {
+          outline: none;
+          border-color: $color-primary-green;
+        }
+      }
+  
+      input[readonly] {
+        background: $bckground-color-grey;
+        color: $font-color-grey;
+        cursor: not-allowed;
+      }
+    }
+  
+    .button-group {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin-top: 10px;
+  
+      .save-button {
+        @include button-style($color-primary-green, $wht-color);
+        font-weight: normal;
+        flex: 1;
+        transition: background 0.3s ease;
+  
+        &:hover {
+          background: darken($color-primary-green, 10%);
+        }
+      }
+  
+      .cancel-button {
+        @include button-style($red-color, $wht-color);
+        font-weight: normal;
+        flex: 1;
+        transition: background 0.3s ease;
+  
+        &:hover {
+          background: darken($red-color, 10%);
+        }
+      }
+    }
+  
+    @media (max-width: 720px) {
+        max-width: 100%;
+        width: 80%;
+        padding: 15px;
+        margin: auto;
+  
+      .input-wrapper {
+        label {
+          font-size: 0.9rem;
+        }
+  
+        input {
+          padding: 8px;
+          font-size: 0.9rem;
+        }
+      }
+  
+      .button-group {
+        flex-direction: column;
+  
+        .save-button,
+        .cancel-button {
+          font-size: 0.9rem;
+          padding: 10px;
+        }
+      }
+    }
+  }
+  

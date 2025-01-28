@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { asyncThunk } from '../utils/asyncThunk';
 
-// Connexion
+// Récupére le token depuis localStorage
+const savedToken = localStorage.getItem('token');
+
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async ({ email, password }, { rejectWithValue }) => {
@@ -18,47 +21,32 @@ export const loginUser = createAsyncThunk(
         throw new Error(data.message || 'Failed to login');
       }
 
-      return data; 
+      return data.body.token;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
-);  
+);
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: null,
-    token: null,
+    token: savedToken || null,
     loading: false,
     error: null,
   },
   reducers: {
     logout: (state) => {
-      state.user = null;
       state.token = null;
       localStorage.removeItem('token');
     },
   },
+
+  // Sauvegarde dans localStorage
   extraReducers: (builder) => {
-    builder
-      // Connexion
-      .addCase(loginUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.token = action.payload.body.token;
-        localStorage.setItem('token', action.payload.body.token);
-      })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+    asyncThunk(builder, loginUser, 'token', true);
   },
 });
 
 export const { logout } = authSlice.actions;
-
 export default authSlice.reducer;

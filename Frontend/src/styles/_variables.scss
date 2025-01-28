@@ -3,19 +3,22 @@
 $color-primary-green: #00bc77;
 
 $bckground-color-purple: #12002b;
+$bckground-color-grey: #d4d4d4;
 
 $font-primary-color: #2c3e50;
+$font-color-grey: #666;
 
 $wht-color: #fff;
 $blk-color: #000;
+$red-color: #d35656;
 
 //* MIXINS
 
-@mixin button-style($bg-color, $text-color, $border-color) {
+@mixin button-style($bg-color, $text-color) {
     padding: 8px;
     font-size: 1.1rem;
     font-weight: bold;
-    border: 1px solid $border-color;
+    border: none;
     background-color: $bg-color;
     color: $text-color;
     text-align: center;

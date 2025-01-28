@@ -8,6 +8,7 @@ const User = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
 
+  // Charge le profil automatiquement
   useEffect(() => {
     if (token) {
       dispatch(fetchUserProfile());

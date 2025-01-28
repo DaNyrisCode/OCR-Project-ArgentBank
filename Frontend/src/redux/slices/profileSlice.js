@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { asyncThunk } from '../utils/asyncThunk';
 
 // Récupération du profil utilisateur
 export const fetchUserProfile = createAsyncThunk(
@@ -36,19 +37,7 @@ const profileSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchUserProfile.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-      })
-      .addCase(fetchUserProfile.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+    asyncThunk(builder, fetchUserProfile, 'user');
   },
 });
 

@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     border: 1px solid $blk-color;
+    border-radius: 10px;
     background-color: $wht-color;
     width: 80%;
     margin: 0 auto;
@@ -39,7 +40,7 @@
     }
   
     .transaction-button {
-        @include button-style($color-primary-green, $wht-color, $color-primary-green);
+        @include button-style($color-primary-green, $wht-color);
       
         @media (min-width: 720px) {
           width: 200px;
