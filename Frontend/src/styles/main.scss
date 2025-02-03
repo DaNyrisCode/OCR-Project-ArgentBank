@@ -1,13 +1,13 @@
-@import "./variables.scss";
-@import "./components/_navbar.scss";
-@import "./components/_footer.scss";
-@import "./components/Home/_hero.scss";
-@import "./components/Home/_features.scss";
-@import "./components/Sign-in/_form.scss";
-@import "./components/Sign-in/_sign-in.scss";
-@import "./components/User/_userheader.scss";
-@import "./components/User/_editform.scss";
-@import "./components/User/_account.scss";
+@use "./variables.scss" as *;
+@use "./components/_navbar.scss";
+@use "./components/_footer.scss";
+@use "./components/Home/_hero.scss";
+@use "./components/Home/_features.scss";
+@use "./components/Sign-in/_form.scss";
+@use "./components/Sign-in/_sign-in.scss";
+@use "./components/User/_userheader.scss";
+@use "./components/User/_editform.scss";
+@use "./components/User/_account.scss";
 
 html {
     font-family: Avenir, Helvetica, Arial, sans-serif;
