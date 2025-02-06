@@ -188,6 +188,7 @@ paths:
             tags:
                 - Transactions
             summary: Update transaction (category or note)
+            description: Updates the category or note of a transaction
             parameters:
                 - name: id
                   in: path
@@ -203,7 +204,24 @@ paths:
                 "200":
                     description: Transaction updated successfully
                 "400":
-                    description: Bad request
+                    description: Bad request (invalid category or missing fields)
+
+    # ✅ GESTION DES CATEGORIES
+    /categories:
+        get:
+            security:
+                - Bearer: []
+            tags:
+                - Categories
+            summary: Get all predefined categories
+            description: Retrieves all predefined categories available for transactions
+            responses:
+                "200":
+                    description: List of categories retrieved successfully
+                    schema:
+                        type: array
+                        items:
+                            $ref: "#/definitions/Category"
 
 securityDefinitions:
     Bearer:
@@ -290,6 +308,15 @@ definitions:
         properties:
             category:
                 type: string
+                enum:
+                    - Alimentaire
+                    - Facture
+                    - Habitation
+                    - Loisirs
+                    - Transport
+                    - Santé
+                    - Éducation
+                    - Autres
             note:
                 type: string
 
@@ -300,3 +327,12 @@ definitions:
                 type: string
             name:
                 type: string
+                enum:
+                    - Alimentaire
+                    - Facture
+                    - Habitation
+                    - Loisirs
+                    - Transport
+                    - Santé
+                    - Éducation
+                    - Autres
