@@ -1,3 +1,4 @@
+//! PAGE D'ACCUEIL
 import Hero from "../components/Home/Hero";
 import Features from "../components/Home/Features";
 

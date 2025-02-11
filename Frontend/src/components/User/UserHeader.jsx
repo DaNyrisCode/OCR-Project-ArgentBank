@@ -1,44 +1,49 @@
+//! ENTETE DE LA PAGE UTILISATEUR
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUserName } from "../../redux/slices/updateProfileSlice";
-import { fetchUserProfile } from "../../redux/slices/profileSlice";
+import { updateUserName, fetchUserProfile } from "../../redux/slices/profileSlice";
 import EditProfileUser from "./EditProfileUser";
 
 const UserHeader = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.profile.user);
   const loading = useSelector((state) => state.profile.loading);
-  const updatedUser = useSelector((state) => state.updateProfile.updatedUser);
 
   const [isEditing, setIsEditing] = useState(false);
   const [newUserName, setNewUserName] = useState("");
 
-  useEffect(() => {
-    if (updatedUser) {
-      dispatch(fetchUserProfile());
-      setIsEditing(false);
-    }
-  }, [updatedUser, dispatch]);
-
+  // Met à jour le pseudo de l'utilisateur
   useEffect(() => {
     if (user) {
-      setNewUserName(user?.userName);
+      setNewUserName(user.userName);
     }
   }, [user]);
 
+  // Ferme le formulaire si le pseudo n'est pas modifié
+  useEffect(() => {
+    if (!loading && user?.userName === newUserName) {
+      setIsEditing(false);
+    }
+  }, [user?.userName, newUserName, loading]);
+
+  // Edition du pseudo
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
+  // Annulation de l'edition
   const handleCancel = () => {
     setNewUserName(user.userName);
     setIsEditing(false);
   };
 
+  // Envoi du nouveau pseudo
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newUserName.trim() !== "") {
-      dispatch(updateUserName(newUserName));
+    if (newUserName.trim() !== "" && newUserName !== user.userName) {
+      dispatch(updateUserName(newUserName)).then(() => {
+        dispatch(fetchUserProfile());
+      });
       setNewUserName("");
     }
   };

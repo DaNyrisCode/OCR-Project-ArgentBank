@@ -1,6 +1,9 @@
+//! BARRE DE NAVIGATION
 import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../redux/slices/authSlice";
+import { logout, resetState } from '../redux/slices/authSlice';
+import { resetProfile } from '../redux/slices/profileSlice';
+import logo from "../img/argentBankLogo.png";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -10,6 +13,8 @@ const Navbar = () => {
   // Déconnexion
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(resetState());
+    dispatch(resetProfile());
   };
 
   return (
@@ -17,13 +22,17 @@ const Navbar = () => {
       <Link to="/" className="main-nav-logo">
         <img
           className="main-nav-logo-image"
-          src="./src/img/argentBankLogo.png"
+          src={logo}
           alt="Argent Bank Logo"
+          width="200"
+          height="50"
+          loading="lazy"
         />
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
         {token ? (
+          // Affiche le pseudo de l'utilisateur et le bouton deconnexion
           <>
             {user && (
               <span className="main-nav-user">

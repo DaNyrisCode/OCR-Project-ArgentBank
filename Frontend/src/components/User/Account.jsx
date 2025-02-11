@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+
+//! COMPTES DE l'UTILISATEUR
 const Account = ({ title, transactions, amount, description }) => {
     return (
       <div className="account">

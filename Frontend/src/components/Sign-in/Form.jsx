@@ -1,23 +1,28 @@
-import { useState } from 'react';
+//! FORMULAIRE DE CONNEXION
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.auth);
 
+  // Envoi des données de connexion
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    
+    if (!email.trim() || !password.trim()) return;
+
     const resultAction = await dispatch(loginUser({ email, password }));
 
     if (loginUser.fulfilled.match(resultAction)) {
       navigate('/user');
-    } else {
-      console.log("Login failed", resultAction);
     }
   };
 
@@ -26,10 +31,10 @@ const Form = () => {
       <div className="input-wrapper">
         <label htmlFor="email">Email</label>
         <input
-          type="text"
+          type="email"
           id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          ref={emailRef}
+          autoComplete="email"
         />
       </div>
       <div className="input-wrapper">
@@ -37,8 +42,8 @@ const Form = () => {
         <input
           type="password"
           id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          ref={passwordRef}
+          autoComplete="current-password"
         />
       </div>
       <div className="input-remember">
@@ -48,7 +53,7 @@ const Form = () => {
       <button type="submit" className="sign-in-button" disabled={loading}>
         {loading ? 'Loading...' : 'Sign In'}
       </button>
-      {error && <p className="error-message">{error}</p>}
+      {error && <p className="error-message" aria-live="polite">{error}</p>}
     </form>
   );
 };

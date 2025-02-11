@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 
+//! FORMULAIRE DE MODIFICATION DE PSEUDO
 const EditProfileUser = ({ user, newUserName, setNewUserName, handleSubmit, handleCancel }) => {
   return (
     <form onSubmit={handleSubmit} className="edit-form">
