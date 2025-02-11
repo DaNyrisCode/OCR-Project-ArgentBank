@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Footer from './src/components/Footer';
 import Navbar from './src/components/Navbar';
 import Home from './src/pages/Home';
@@ -22,6 +22,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />
     </BrowserRouter>

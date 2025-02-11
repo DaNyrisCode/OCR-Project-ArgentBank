@@ -18,14 +18,9 @@ $red-color: #d35656;
     padding: 8px;
     font-size: 1.1rem;
     font-weight: bold;
-    border: none;
     background-color: $bg-color;
     color: $text-color;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
-  
-    @media (min-width: 720px) {
-      width: auto;
-    }
   }

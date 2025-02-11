@@ -26,7 +26,7 @@ const Features = () => {
       <Feature
         icon="./src/img/icon-security.png"
         title="Security you can trust"
-        description="We use top-of-the-line encryption to make sure your data and money are always safe."
+        description="We use top of the line encryption to make sure your data and money is always safe."
       />
     </section>
   );

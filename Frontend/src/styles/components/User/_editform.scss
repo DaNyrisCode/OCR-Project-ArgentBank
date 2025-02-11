@@ -52,6 +52,7 @@
   
       .save-button {
         @include button-style($color-primary-green, $wht-color);
+        border: none;
         font-weight: normal;
         flex: 1;
         transition: background 0.3s ease;
@@ -63,6 +64,7 @@
   
       .cancel-button {
         @include button-style($red-color, $wht-color);
+        border: none;
         font-weight: normal;
         flex: 1;
         transition: background 0.3s ease;

@@ -121,7 +121,7 @@ paths:
                 "401":
                     description: Unauthorized
 
-    /accounts/{id}:
+    /accounts/{accountId}:
         get:
             security:
                 - Bearer: []
@@ -129,7 +129,7 @@ paths:
                 - Accounts
             summary: Get account details
             parameters:
-                - name: id
+                - name: accountId
                   in: path
                   required: true
                   type: string
@@ -143,14 +143,20 @@ paths:
                     description: Account not found
 
     # ✅ GESTION DES TRANSACTIONS
-    /transactions:
+    /accounts/{accountId}/transactions:
         get:
             security:
                 - Bearer: []
             tags:
                 - Transactions
-            summary: Get all transactions
-            description: Retrieves the transaction history of the user
+            summary: Get transactions for a specific account
+            description: Retrieves the transaction history of a specific account
+            parameters:
+                - name: accountId
+                  in: path
+                  required: true
+                  type: string
+                  description: Account ID
             responses:
                 "200":
                     description: List of transactions retrieved successfully
@@ -160,16 +166,23 @@ paths:
                             $ref: "#/definitions/Transaction"
                 "401":
                     description: Unauthorized
+                "404":
+                    description: Account not found or no transactions available
 
-    /transactions/{id}:
+    /accounts/{accountId}/transactions/{transactionId}:
         get:
             security:
                 - Bearer: []
             tags:
                 - Transactions
-            summary: Get transaction details
+            summary: Get a specific transaction for an account
             parameters:
-                - name: id
+                - name: accountId
+                  in: path
+                  required: true
+                  type: string
+                  description: Account ID
+                - name: transactionId
                   in: path
                   required: true
                   type: string
@@ -181,7 +194,6 @@ paths:
                         $ref: "#/definitions/Transaction"
                 "404":
                     description: Transaction not found
-
         put:
             security:
                 - Bearer: []
@@ -190,7 +202,12 @@ paths:
             summary: Update transaction (category or note)
             description: Updates the category or note of a transaction
             parameters:
-                - name: id
+                - name: accountId
+                  in: path
+                  required: true
+                  type: string
+                  description: Account ID
+                - name: transactionId
                   in: path
                   required: true
                   type: string
@@ -288,6 +305,8 @@ definitions:
         type: object
         properties:
             id:
+                type: string
+            accountId:
                 type: string
             date:
                 type: string

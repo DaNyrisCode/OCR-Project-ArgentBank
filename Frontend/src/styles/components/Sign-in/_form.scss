@@ -26,6 +26,8 @@
   
   .sign-in-button {
     @include button-style($color-primary-green, $wht-color);
+    border: none;
     margin-top: 1rem;
+    width: 100%;
   }
   

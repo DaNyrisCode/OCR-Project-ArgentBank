@@ -5,8 +5,9 @@ import { logout } from "../redux/slices/authSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.profile.user);
 
-  // Deconnexion
+  // Déconnexion
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -23,13 +24,16 @@ const Navbar = () => {
       </Link>
       <div>
         {token ? (
-          <NavLink
-            to="/"
-            className="main-nav-item"
-            onClick={handleLogout}
-          >
-            <i className="fa fa-sign-out"></i> Deconnexion
-          </NavLink>
+          <>
+            {user && (
+              <span className="main-nav-user">
+                <i className="fa fa-user-circle"></i> {user.userName}
+              </span>
+            )}
+            <NavLink to="/" className="main-nav-item" onClick={handleLogout}>
+              <i className="fa fa-sign-out"></i> Sign Out
+            </NavLink>
+          </>
         ) : (
           <NavLink className="main-nav-item" to="/sign-in">
             <i className="fa fa-user-circle"></i> Sign In

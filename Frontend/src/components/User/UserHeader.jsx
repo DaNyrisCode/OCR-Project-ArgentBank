@@ -53,7 +53,6 @@ const UserHeader = () => {
             Welcome back<br />
             {user.firstName} {user.lastName}!
           </h1>
-          <h2>AkA {user.userName}</h2>
 
           {isEditing ? (
             <EditProfileUser
