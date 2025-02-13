@@ -1,3 +1,5 @@
+//! RECUPERATION ET MISE A JOUR DU PROFIL
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { asyncThunk } from '../utils/asyncThunk';
 

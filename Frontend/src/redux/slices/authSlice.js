@@ -1,3 +1,5 @@
+//! AUTHENTIFICATION
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { asyncThunk } from '../utils/asyncThunk';
 

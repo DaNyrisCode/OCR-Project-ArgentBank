@@ -1,4 +1,4 @@
-// Gestion des etats/actions asynchrones 
+//! GESTION DES ETATS/REQUETES ASYNCHRONES
 
 export const asyncThunk = (builder, asyncThunk, key, storeInLocalStorage = false) => {
   builder
